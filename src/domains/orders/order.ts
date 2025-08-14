@@ -9,6 +9,8 @@ type RestoreInput = {
   id: string;
   userId: string;
   total: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export class Order {
@@ -16,6 +18,8 @@ export class Order {
     public readonly id: string,
     public readonly userId: string,
     public total: number,
+    public readonly createdAt?: Date,
+    public readonly updatedAt?: Date,
   ) {}
 
   public static create(input: CreateInput): Order {
@@ -23,7 +27,13 @@ export class Order {
   }
 
   public static restore(input: RestoreInput): Order {
-    return new Order(input.id, input.userId, input.total);
+    return new Order(
+      input.id,
+      input.userId,
+      input.total,
+      input.createdAt,
+      input.updatedAt,
+    );
   }
 
   public addItem(orderItem: OrderItem) {

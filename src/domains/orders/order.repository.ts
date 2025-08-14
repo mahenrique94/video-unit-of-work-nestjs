@@ -8,7 +8,7 @@ export class OrderRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   public async persist(input: Order) {
-    if (input.id) {
+    if (input.createdAt) {
       const record = await this.prisma.instance().order.update({
         data: {
           total: input.total,
